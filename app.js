@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof L === "undefined") {
+    alert("Leaflet failed to load. Check your connection or script tags.");
+    return;
+  }
+
   const map = L.map("map").setView([39.5, -98.35], 4);
 
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
