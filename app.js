@@ -1,13 +1,31 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const map = L.map("map").setView([39.5, -98.35], 4);
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  map.on("click", (e) => {
+    const { lat, lng } = e.latlng;
+    console.log("Clicked at:", lat, lng);
+
+    L.marker([lat, lng])
+      .addTo(map)
+      .bindPopup(`<b>Lat:</b> ${lat.toFixed(4)}<br><b>Lng:</b> ${lng.toFixed(4)}`)
+      .openPopup();
+  });
+
+  console.log("Map initialized");
+});
+
 const db = new Dexie("CatchNTrackDB");
 
 db.version(1).stores({
   spots: "++id,timestamp,type,notes,lat,lng"
 });
 
-// Default mode
 let currentMode = "";
 
-// DOM references
 const addBtn = document.getElementById("add-btn");
 const editBtn = document.getElementById("edit-btn");
 const deleteBtn = document.getElementById("delete-btn");
