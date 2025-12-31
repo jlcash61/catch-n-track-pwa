@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2b3e50" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Catch N Track</title>
+</head>
+<body>
+  <header>
+    <h1>Catch N Track</h1>
+  </header>
+
+  <main>
+    <section id="map"></section>
+    <section id="controls">
+      <button id="add-btn">Add Point</button>
+      <button id="edit-btn">Edit</button>
+      <button id="delete-btn">Delete</button>
+      <button id="done-btn" style="display:none;">Done</button>
+      <button id="export-btn">Export</button>
+      <input type="file" id="import-file" />
+    </section>
+    <section id="info"></section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/dexie@4.0.2/dist/dexie.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
