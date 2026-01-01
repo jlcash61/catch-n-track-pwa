@@ -1,4 +1,4 @@
-const CACHE_NAME = "catchntrack-cache-v2";
+const CACHE_NAME = "catchntrack-cache-v2.1";
 const URLS_TO_CACHE = [
   "/",
   "/index.html",
@@ -28,3 +28,18 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
+self.addEventListener("activate", event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames
+          .filter(name => name !== CACHE_NAME)
+          .map(name => caches.delete(name))
+      );
+    })
+  );
+});
+
+
+

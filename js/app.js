@@ -31,6 +31,20 @@ importFishingSpotsFromFile(e.target.files[0]);
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("/service-worker.js")
-    .then(reg => console.log("Service Worker registered:", reg.scope))
+    .then(reg => {
+      console.log("Service Worker registered:", reg.scope);
+      reg.update();
+
+      reg.addEventListener("updatefound", () => {
+        const newWorker = reg.installing;
+        newWorker.addEventListener("statechange", () => {
+          if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+            if (confirm("A new version is available. Reload?")) {
+              window.location.reload();
+            }
+          }
+        });
+      });
+    })
     .catch(err => console.error("Service Worker registration failed:", err));
 }
