@@ -1,4 +1,4 @@
-import { initIndexedDB } from './db.js';
+import { db, initIndexedDB } from './db.js';
 import { initMap } from './map.js';
 import { setupModeButtons } from './modes.js';
 import { showUserLocationAndData } from './geo.js';
