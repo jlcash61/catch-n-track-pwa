@@ -1,158 +1,140 @@
 /* Base Styles */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Top Panel */
 #top-panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
-    z-index: 1100;
-    text-align: center;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1100;
 }
 
 #top-panel span {
-    flex: 1 1 100%;
-    padding: 5px 0;
+  flex: 1 1 100%;
+  padding: 5px 0;
 }
 
-/* Weather Info */
 #weather-info {
-    font-size: 14px;
-    line-height: 1.5;
-    white-space: normal;
-    overflow-wrap: break-word;
-    text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
 }
 
-#weather-info div {
-    margin-bottom: 5px;
+/* Layout */
+#page-content {
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 60px); /* Top panel height */
+  overflow: hidden;
 }
 
-/* Sidebar */
+/* Sidebar (Desktop only) */
 #sidebar {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    width: 150px;
-    height: calc(100% - 80px);
-    background-color: #444;
-    color: white;
-    padding: 10px;
-    box-sizing: border-box;
-    z-index: 1000;
-    overflow-y: auto;
+  width: 150px;
+  background-color: #444;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sidebar-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+  background-color: #555;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.sidebar-button:hover {
+  background-color: #666;
+}
+
+/* Desktop Footer */
+#footer-desktop {
+  font-size: 0.75em;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
 }
 
 /* Map */
 #map {
-    position: absolute;
-    top: 80px;
-    left: 150px;
-    width: calc(100% - 150px);
-    height: calc(100% - 80px);
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
 }
 
-/* Sidebar Buttons */
-.sidebar-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #555;
-    color: white;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s;
+/* Mobile Footer & Controls (Hidden by default) */
+#mobile-controls {
+  display: none;
 }
 
-.sidebar-button:hover {
-    background-color: #666;
+#footer-mobile {
+  text-align: center;
+  font-size: 0.75em;
+  color: #ccc;
+  padding-top: 10px;
 }
 
-/* Sign-in Modal */
-#sign-in-page {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    width: 300px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    z-index: 2000;
-    display: none;
-}
-
-#sign-in-page h2 {
-    text-align: center;
-}
-
-#sign-in-page input[type="email"],
-#sign-in-page input[type="password"],
-#sign-in-page button {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-#sign-in-page a {
-    display: block;
-    text-align: center;
-    color: #007bff;
-    text-decoration: none;
-    margin-top: 10px;
-}
-
-#sign-in-page a:hover {
-    text-decoration: underline;
-}
-
-/* Mobile Styles */
+/* Responsive: Mobile */
 @media (max-width: 768px) {
-    #top-panel {
-        flex-direction: column;
-        padding: 10px;
-    }
+  #page-content {
+    flex-direction: column;
+  }
 
-    #sidebar {
-        position: fixed;
-        top: auto;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: auto;
-        background-color: #444;
-        display: flex;
-        justify-content: space-around;
-        padding: 5px;
-    }
+  #sidebar {
+    display: none; /* hide desktop sidebar */
+  }
 
-    .sidebar-button {
-        flex-grow: 1;
-        margin: 0 5px;
-        padding: 15px;
-    }
+  #mobile-controls {
+    display: flex;
+    flex-direction: column;
+    background-color: #444;
+    color: white;
+    padding: 10px;
+  }
 
-    #map {
-        top: 120px;
-        left: 0;
-        width: 100%;
-        height: calc(100% - 170px);
-    }
+  .sidebar-button-group {
+    display: flex;
+    justify-content: vertical;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .sidebar-button {
+    flex: 1;
+    margin: 0;
+    padding: 15px;
+  }
+
+  #map {
+    height: calc(100vh - 220px); /* adjust for top panel + controls */
+    width: 100%;
+  }
 }
+
+
