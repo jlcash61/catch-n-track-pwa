@@ -1,80 +1,158 @@
+/* Base Styles */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: #f0f0f0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
 }
 
-#app-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+/* Top Panel */
+#top-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1100;
+    text-align: center;
 }
 
-header {
-  background: #2b3e50;
-  color: white;
-  padding: 1rem;
-  text-align: center;
+#top-panel span {
+    flex: 1 1 100%;
+    padding: 5px 0;
 }
 
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+/* Weather Info */
+#weather-info {
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-align: center;
 }
 
+#weather-info div {
+    margin-bottom: 5px;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 150px;
+    height: calc(100% - 80px);
+    background-color: #444;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Map */
 #map {
-  flex: 1;
-  min-height: 300px;
-  width: 100%;
-  z-index: 0;
+    position: absolute;
+    top: 80px;
+    left: 150px;
+    width: calc(100% - 150px);
+    height: calc(100% - 80px);
 }
 
-#controls {
-  padding: 0.5rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  background: #fff;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-  z-index: 10;
+/* Sidebar Buttons */
+.sidebar-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
 }
 
-button, input[type="file"] {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background: #fff;
-  cursor: pointer;
+.sidebar-button:hover {
+    background-color: #666;
 }
 
-button:hover {
-  background: #eee;
+/* Sign-in Modal */
+#sign-in-page {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: none;
 }
 
-#info {
-  padding: 0.5rem;
-  background: #f9f9f9;
-  font-size: 0.9rem;
-  text-align: center;
-  overflow-x: auto;
+#sign-in-page h2 {
+    text-align: center;
 }
 
-html, body, #map, #app-container {
-  height: 100%;
-  max-height: 100vh;
+#sign-in-page input[type="email"],
+#sign-in-page input[type="password"],
+#sign-in-page button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.leaflet-container {
-  height: 100% !important;
-  width: 100% !important;
-  z-index: 0;
+#sign-in-page a {
+    display: block;
+    text-align: center;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+#sign-in-page a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    #top-panel {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    #sidebar {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        background-color: #444;
+        display: flex;
+        justify-content: space-around;
+        padding: 5px;
+    }
+
+    .sidebar-button {
+        flex-grow: 1;
+        margin: 0 5px;
+        padding: 15px;
+    }
+
+    #map {
+        top: 120px;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 170px);
+    }
 }

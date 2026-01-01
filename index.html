@@ -1,41 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#2b3e50" />
-  <link rel="manifest" href="./manifest.json" />
-  <link rel="stylesheet" href="./styles.css" />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+4gS0nUNbZfVjE/MTcFQFZ7VJ6yS+crsYy8Ryo69w="
-    crossorigin=""
-  />
-  <title>Catch N Track</title>
-</head>
-<body>
-  <div id="app-container">
-    <header>
-      <h1>Catch N Track</h1>
-    </header>
 
-    <main>
-      <section id="controls">
-        <button id="add-btn">Add Point</button>
-        <button id="edit-btn">Edit</button>
-        <button id="delete-btn">Delete</button>
-        <button id="done-btn" style="display:none;">Done</button>
-        <button id="export-btn">Export</button>
-        <input type="file" id="import-file" />
-      </section>
-      <div id="map"></div>
-      <section id="info"></section>
-    </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fishing Hole App</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#3367D6" />
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Recommended for modern mobile PWA behavior -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <!-- Favicon -->
+  <link rel="icon" href="icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16">
+
+</head>
+
+<body>
+  <div id="top-panel">
+    <span>Fishing Hole App</span>
+    <div id="weather-info">
+      Weather and Moon data unavailable (placeholder)
+    </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/dexie@4.0.2/dist/dexie.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="./app.js"></script>
+  <div id="sidebar">
+    <button id="add-btn" class="sidebar-button">Add</button>
+    <button id="edit-btn" class="sidebar-button">Edit</button>
+    <button id="delete-btn" class="sidebar-button">Delete</button>
+    <!----future export/import buttons----
+    <button id="export-btn">Export</button>
+    <button id="import-btn">Import</button>
+    <input type="file" id="import-file" style="display: none" />
+    ---->
+    <button id="done-btn" class="sidebar-button" style="display: none;">Done</button>
+
+  </div>
+
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- App Script -->
+  <script type="module" src="./js/app.js?v=1.0"></script>
 </body>
+
 </html>
