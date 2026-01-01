@@ -57,24 +57,31 @@ export function loadUserData() {
                 const shareBtn = popupContent.querySelector(".share-spot-btn");
                 if (shareBtn) {
                     shareBtn.onclick = () => {
-                        const shareText = `🎣 Fishing Spot:
-Fish: ${fishType}
-Bait: ${baitUsed}
-Notes: ${notes}
-Location: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}
-Time: ${timestamp}`;
+                        const spotToShare = {
+                            fishType,
+                            baitUsed,
+                            notes,
+                            latitude,
+                            longitude,
+                            timestamp
+                        };
+
+                        const encoded = btoa(JSON.stringify(spotToShare));
+                        const shareUrl = `https://catchntrack.tiborg.app/#import=${encoded}`;
 
                         if (navigator.share) {
                             navigator.share({
                                 title: "Shared Fishing Spot",
-                                text: shareText
+                                text: "Tap to import this spot into CatchNTrack:",
+                                url: shareUrl
                             }).catch(err => console.error("Share failed:", err));
                         } else {
-                            navigator.clipboard.writeText(shareText)
-                                .then(() => alert("Spot copied to clipboard!"))
+                            navigator.clipboard.writeText(shareUrl)
+                                .then(() => alert("Spot link copied to clipboard!"))
                                 .catch(() => alert("Unable to copy."));
                         }
                     };
+
                 }
             });
 

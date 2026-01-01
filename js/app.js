@@ -48,3 +48,18 @@ if ("serviceWorker" in navigator) {
     })
     .catch(err => console.error("Service Worker registration failed:", err));
 }
+
+if (window.location.hash.startsWith('#import=')) {
+  try {
+    const data = atob(window.location.hash.replace('#import=', ''));
+    const spot = JSON.parse(data);
+    const tx = db.transaction(["fishingSpots"], "readwrite");
+    const store = tx.objectStore("fishingSpots");
+    store.add(spot);
+    alert("Shared spot imported successfully!");
+  } catch (err) {
+    alert("Failed to import shared spot.");
+    console.error(err);
+  }
+}
+
