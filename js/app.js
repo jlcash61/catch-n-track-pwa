@@ -9,10 +9,11 @@ import { showUserLocationAndData } from './geo.js';
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    initIndexedDB();
-    initMap();
-    setupModeButtons();
+ddocument.addEventListener("DOMContentLoaded", async () => {
+  await initIndexedDB(); // Wait until DB is ready
+  initMap();
+  setupModeButtons();
+  showUserLocationAndData();
 
     /*
 document.getElementById('export-btn').addEventListener('click', exportFishingSpots);
