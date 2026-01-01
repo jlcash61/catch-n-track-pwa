@@ -2,7 +2,7 @@
   "name": "CatchNTrack",
   "short_name": "CatchNTrack",
   "description": "Track fishing & hunting spots, log catches, and share with friends.",
-  "start_url": "/index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3367D6",
